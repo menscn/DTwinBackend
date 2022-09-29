@@ -7,7 +7,6 @@ package com.msc.DTwinBackend.handler;
  * @Description:
  */
 
-import com.msc.DTwinBackend.entity.pojo.DatabaseTest;
 import com.msc.DTwinBackend.mapper.DatabaseMapper;
 import com.msc.DTwinBackend.utils.ApplicationContextProvider;
 import io.netty.channel.ChannelHandlerContext;
@@ -40,22 +39,19 @@ public class BootNettyUdpSimpleChannelInboundHandler extends SimpleChannelInboun
         try {
             String xmlStr = msg.content().toString(CharsetUtil.UTF_8);
             //打印收到的消息
-            log.info("---------------------receive data--------------------------");
-            log.info(xmlStr);
+//            log.info("---------------------receive data--------------------------");
+//            log.info(xmlStr);
             String elementStr = "Joint";
-            int size = 6;
             Document document = DocumentHelper.parseText(xmlStr);
-            Element root = document.getRootElement();
-            Element element = root.element(elementStr);
-            List<DatabaseTest> all = databaseMapper.findAll();
-            System.out.println("数据库:" + all.get(0));
-            log.info(xmlStr);
-            for (int i = 0; i < size; i++) {
-                Attribute attribute = element.attribute(i);
-                jedis.set(attribute.getName(), attribute.getValue());
-                log.info("节点名" + attribute.getName() + ":" + attribute.getValue());
+            Element rootElement = document.getRootElement();
+            Element element = rootElement.element(elementStr);
+            List<Attribute> attributes = element.attributes();
+            for (Attribute att : attributes) {
+                jedis.set(att.getName(), att.getValue());
             }
-            log.info("---------------------receive data--------------------------");
+//            TODO 加入消息队列，异步存入数据库中
+//            List<DatabaseTest> all = databaseMapper.findAll();
+//            log.info("---------------------receive data--------------------------");
         } catch (Exception e) {
         }
     }

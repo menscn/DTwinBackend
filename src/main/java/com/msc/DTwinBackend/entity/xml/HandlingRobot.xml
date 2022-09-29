@@ -9,10 +9,5 @@
             <node>"A5"</node>
             <node>"A6"</node>
         </Joint>
-        <Location>
-            <node>"X"</node>
-            <node>"Y"</node>
-            <node>"Z"</node>
-        </Location>
     </HandlingRobot>
 </root>

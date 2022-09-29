@@ -25,6 +25,6 @@ public class DTwinBackendApplication implements CommandLineRunner {
     @Async
     @Override
     public void run(String... args) {
-        new BootNettyUdpServer().bind(8001);
+        new BootNettyUdpServer().bind(8011);
     }
 }
