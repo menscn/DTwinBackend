@@ -19,7 +19,6 @@ public class DTwinBackendApplication implements CommandLineRunner {
         ApplicationContext app = SpringApplication.run(DTwinBackendApplication.class, args);
         // 设置上下文
         applicationContextProvider.setApplicationContext(app);
-        System.out.println(" 启动成功");
     }
 
     @Async

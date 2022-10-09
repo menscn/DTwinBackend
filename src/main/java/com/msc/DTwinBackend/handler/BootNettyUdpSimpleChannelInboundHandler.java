@@ -7,17 +7,15 @@ package com.msc.DTwinBackend.handler;
  * @Description:
  */
 
-import com.msc.DTwinBackend.mapper.DatabaseMapper;
+import com.msc.DTwinBackend.entity.pojo.User;
+import com.msc.DTwinBackend.mapper.UserMapper;
 import com.msc.DTwinBackend.utils.ApplicationContextProvider;
+import com.msc.DTwinBackend.utils.DataAnalysis;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.socket.DatagramPacket;
 import io.netty.util.CharsetUtil;
 import lombok.extern.slf4j.Slf4j;
-import org.dom4j.Attribute;
-import org.dom4j.Document;
-import org.dom4j.DocumentHelper;
-import org.dom4j.Element;
 import redis.clients.jedis.Jedis;
 
 import java.util.List;
@@ -27,10 +25,12 @@ import java.util.List;
  */
 @Slf4j
 public class BootNettyUdpSimpleChannelInboundHandler extends SimpleChannelInboundHandler<DatagramPacket> {
-    private DatabaseMapper databaseMapper;
+    private UserMapper userMapper;
+    private DataAnalysis dataAnalysis;
 
     public BootNettyUdpSimpleChannelInboundHandler() {
-        databaseMapper = ApplicationContextProvider.getBean(DatabaseMapper.class);
+        userMapper = ApplicationContextProvider.getBean(UserMapper.class);
+        dataAnalysis = ApplicationContextProvider.getBean(DataAnalysis.class);
     }
 
     @Override
@@ -39,19 +39,19 @@ public class BootNettyUdpSimpleChannelInboundHandler extends SimpleChannelInboun
         try {
             String xmlStr = msg.content().toString(CharsetUtil.UTF_8);
             //打印收到的消息
-//            log.info("---------------------receive data--------------------------");
-//            log.info(xmlStr);
-            String elementStr = "Joint";
-            Document document = DocumentHelper.parseText(xmlStr);
-            Element rootElement = document.getRootElement();
-            Element element = rootElement.element(elementStr);
-            List<Attribute> attributes = element.attributes();
-            for (Attribute att : attributes) {
-                jedis.set(att.getName(), att.getValue());
-            }
+            log.info("---------------------receive data--------------------------");
+            dataAnalysis.dataHandler(xmlStr, "Joint");
+//            String elementStr = "Joint";
+//            Document document = DocumentHelper.parseText(xmlStr);
+//            Element rootElement = document.getRootElement();
+//            Element element = rootElement.element(elementStr);
+//            List<Attribute> attributes = element.attributes();
+//            for (Attribute att : attributes) {
+//                jedis.set(att.getName(), att.getValue());
+//            }
 //            TODO 加入消息队列，异步存入数据库中
-//            List<DatabaseTest> all = databaseMapper.findAll();
-//            log.info("---------------------receive data--------------------------");
+            List<User> list = userMapper.selectList(null);
+            log.info("---------------------ok--------------------------");
         } catch (Exception e) {
         }
     }

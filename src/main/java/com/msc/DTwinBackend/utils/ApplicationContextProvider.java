@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * @author mSc
  * @version 1.0
  * @Package com.msc.DTwinBackend.utils
- * @Description:
+ * @Description: 手动获得bean
  */
 
 

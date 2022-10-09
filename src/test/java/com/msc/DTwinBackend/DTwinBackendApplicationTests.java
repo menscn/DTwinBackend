@@ -1,25 +1,36 @@
 package com.msc.DTwinBackend;
 
-import com.msc.DTwinBackend.entity.pojo.DatabaseTest;
-import com.msc.DTwinBackend.mapper.DatabaseMapper;
-import com.msc.DTwinBackend.mapper.UserMapper;
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.List;
 
 @SpringBootTest
 class DTwinBackendApplicationTests {
-    @Autowired
-    private UserMapper userMapper;
-    @Autowired
-    private DatabaseMapper databaseMapper;
+//    @Autowired
+//    private SendMsg sendMsgConvertMsg;
+//
+//    @Test
+//    public void sendMsgContent() throws Exception {
+//        // 发送消息对象MsgContent1
+//        MsgContent1 msgContent1 = new MsgContent1();
+//        msgContent1.setName("send msg via spring boot - msg convert - MsgContent1");
+//        msgContent1.setAge("" + ThreadLocalRandom.current().nextInt(100));
+//        sendMsgConvertMsg.sendMsgContent1(msgContent1);
+//
+//        // 发送消息对象MsgContent2
+//        MsgContent2 msgContent2 = new MsgContent2();
+//        msgContent2.setId(ThreadLocalRandom.current().nextInt(100) + "");
+//        msgContent2.setContent("send msg via spring boot - msg convert - MsgContent1");
+//        sendMsgConvertMsg.sendMsgContent2(msgContent2);
+//
+//        try {
+//            Thread.sleep(1000 * 10);
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     @Test
-    void contextLoads() {
-        List<DatabaseTest> all = databaseMapper.findAll();
-        System.out.println(all);
-
+    public void test() {
+        
     }
 }
