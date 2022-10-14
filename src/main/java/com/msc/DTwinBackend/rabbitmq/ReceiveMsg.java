@@ -2,10 +2,9 @@ package com.msc.DTwinBackend.rabbitmq;
 
 import com.msc.DTwinBackend.config.RabbitMsgConvertConfigure;
 import com.msc.DTwinBackend.entity.pojo.Msg;
-import com.msc.DTwinBackend.entity.pojo.MsgContent1;
-import com.msc.DTwinBackend.entity.pojo.MsgContent2;
 import com.msc.DTwinBackend.entity.pojo.OriMsg;
 import com.msc.DTwinBackend.mapper.OriMsgMapper;
+import com.msc.DTwinBackend.service.BigRobotJointService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -25,24 +24,8 @@ import org.springframework.stereotype.Component;
 public class ReceiveMsg {
     @Autowired
     private OriMsgMapper oriMsgMapper;
-
-    /**
-     * 获取信息:
-     * queue也可以支持RabbitMQ中对队列的模糊匹配
-     *
-     * @param content
-     */
-    @RabbitHandler
-    public void receiveMsgContent1(MsgContent1 content) {
-        // ...
-        System.out.println("[ReceiveMsgConvertMsg-MsgContent1] receive receiveMsgContent1 msg: " + content);
-    }
-
-    @RabbitHandler
-    public void receiveMsgContent2(MsgContent2 msgContent2) {
-        // ...
-        System.out.println("[ReceiveMsgConvertMsg-MsgContent2] receive receiveMsgContent2 msg: " + msgContent2);
-    }
+    @Autowired
+    private BigRobotJointService bigRobotJointService;
 
     @RabbitHandler
     public void receiveOriMsg(OriMsg oriMsg) {
@@ -61,6 +44,8 @@ public class ReceiveMsg {
         oriMsgMapper.insert(oriMsg);
         System.out.println("[ReceiveMsgConvertMsg-MsgContent2] receive receiveMsgContent2 msg: " + oriMsg);
         log.info("+++++数据存储成功-");
+//        BigRobotJointData objFromRedis = bigRobotJointService.getObjFromRedis();
+//        log.info("objFromRedis" + objFromRedis.getBJoint1());
     }
 //    @RabbitHandler
 //    public void receiveString(@Payload String content) {

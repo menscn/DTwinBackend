@@ -1,16 +1,16 @@
 package com.msc.DTwinBackend;
 
-import com.msc.DTwinBackend.entity.pojo.MsgContent1;
-import com.msc.DTwinBackend.entity.pojo.MsgContent2;
+import com.msc.DTwinBackend.constant.IdConstant;
+import com.msc.DTwinBackend.entity.pojo.FixtureForce;
 import com.msc.DTwinBackend.entity.pojo.OriMsg;
-import com.msc.DTwinBackend.mapper.OriMsgMapper;
+import com.msc.DTwinBackend.entity.pojo.TorqueForce;
+import com.msc.DTwinBackend.mapper.*;
 import com.msc.DTwinBackend.rabbitmq.SendMsg;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Date;
-import java.util.concurrent.ThreadLocalRandom;
 
 @SpringBootTest
 class DTwinBackendApplicationTests {
@@ -18,20 +18,17 @@ class DTwinBackendApplicationTests {
     private SendMsg sendMsgConvertMsg;
     @Autowired
     private OriMsgMapper oriMsgMapper;
+    @Autowired
+    private BigRobotMapper bigRobotMapper;
+    @Autowired
+    private SmallRobotMapper smallRobotMapper;
+    @Autowired
+    private FixtureForceMapper fixtureForceMapper;
+    @Autowired
+    private TorqueForceMapper torqueForceMapper;
 
     @Test
     public void sendMsgContent() throws Exception {
-        // 发送消息对象MsgContent1
-        MsgContent1 msgContent1 = new MsgContent1();
-        msgContent1.setName("send msg via spring boot - msg convert - MsgContent1");
-        msgContent1.setAge("" + ThreadLocalRandom.current().nextInt(100));
-        sendMsgConvertMsg.sendMsgContent1(msgContent1);
-
-        // 发送消息对象MsgContent2
-        MsgContent2 msgContent2 = new MsgContent2();
-        msgContent2.setId(ThreadLocalRandom.current().nextInt(100) + "");
-        msgContent2.setContent("send msg via spring boot - msg convert - MsgContent1");
-        sendMsgConvertMsg.sendMsgContent2(msgContent2);
 
         OriMsg oriMsg = new OriMsg();
         oriMsg.setId(1);
@@ -49,5 +46,28 @@ class DTwinBackendApplicationTests {
         oriMsg.setXmlStr(xml);
         oriMsgMapper.insert(oriMsg);
         Date date = new Date();
+    }
+
+    @Autowired
+    private IdConstant idConstant;
+
+    @Test
+    public void testMysql() {
+//        SmallRobotJointData jointData = new SmallRobotJointData();
+//        jointData.setSJoint1("1");
+//        jointData.setSJoint2("1");
+//        jointData.setSJoint3("1");
+//        jointData.setSJoint4("1");
+//        jointData.setSJoint5("1");
+//        jointData.setSJoint6("1");
+        FixtureForce fixtureForce = new FixtureForce();
+        TorqueForce torqueForce = new TorqueForce();
+
+        fixtureForce.setFixture1("1");
+        torqueForce.setAssemblyBatchId("idConstant.getAssemblyBatchId()");
+//        smallRobotMapper.insert(jointData);
+//        fixtureForceMapper.insert(fixtureForce);
+
+        torqueForceMapper.insert(torqueForce);
     }
 }

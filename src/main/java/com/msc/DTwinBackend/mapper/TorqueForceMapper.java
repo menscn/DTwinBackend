@@ -1,7 +1,7 @@
 package com.msc.DTwinBackend.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.msc.DTwinBackend.entity.pojo.User;
+import com.msc.DTwinBackend.entity.pojo.TorqueForce;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -11,5 +11,5 @@ import org.apache.ibatis.annotations.Mapper;
  * @Description:
  */
 @Mapper
-public interface UserMapper extends BaseMapper<User> {
+public interface TorqueForceMapper extends BaseMapper<TorqueForce> {
 }

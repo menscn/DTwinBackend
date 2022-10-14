@@ -8,7 +8,6 @@ package com.msc.DTwinBackend.handler;
  */
 
 import com.msc.DTwinBackend.entity.pojo.Msg;
-import com.msc.DTwinBackend.mapper.UserMapper;
 import com.msc.DTwinBackend.rabbitmq.SendMsg;
 import com.msc.DTwinBackend.utils.ApplicationContextProvider;
 import com.msc.DTwinBackend.utils.DataAnalysis;
@@ -23,12 +22,10 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class BootNettyUdpSimpleChannelInboundHandler extends SimpleChannelInboundHandler<DatagramPacket> {
-    private UserMapper userMapper;
     private DataAnalysis dataAnalysis;
     private SendMsg sendMsg;
 
     public BootNettyUdpSimpleChannelInboundHandler() {
-        userMapper = ApplicationContextProvider.getBean(UserMapper.class);
         dataAnalysis = ApplicationContextProvider.getBean(DataAnalysis.class);
         sendMsg = ApplicationContextProvider.getBean(SendMsg.class);
     }
