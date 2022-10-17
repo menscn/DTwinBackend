@@ -79,18 +79,17 @@
             <artifactId>velocity-engine-core</artifactId>
             <version>${velocity.version}</version>
         </dependency>
-
         <!--swagger-->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
-            <version>${swagger.version}</version>
+            <version>2.9.2</version>
         </dependency>
         <!--swagger ui-->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
-            <version>${swagger.version}</version>
+            <version>2.9.2</version>
         </dependency>
         <!--日期时间工具-->
         <dependency>
@@ -114,17 +113,21 @@
             <artifactId>hutool-all</artifactId>
             <version>5.8.5</version>
         </dependency>
+
         <!--        Mybatis-->
         <!--        <dependency>-->
         <!--            <groupId>org.mybatis.spring.boot</groupId>-->
         <!--            <artifactId>mybatis-spring-boot-starter</artifactId>-->
         <!--            <version>2.2.1</version>-->
         <!--        </dependency>-->
+
         <!--        rabbitmq-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-amqp</artifactId>
         </dependency>
+
+
     </dependencies>
 
     <build>

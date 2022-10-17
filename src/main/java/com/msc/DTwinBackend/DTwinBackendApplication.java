@@ -13,7 +13,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @SpringBootApplication
 @EnableAsync
 public class DTwinBackendApplication implements CommandLineRunner {
-    
+
     private static ApplicationContextProvider applicationContextProvider = new ApplicationContextProvider();
 
     public static void main(String[] args) {

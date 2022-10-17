@@ -10,8 +10,8 @@ spring:
     password:
     jedis:
       pool:
-        max-idle: 10
-        max-active: 10
+        max-idle: 20
+        max-active: 20
         min-idle: 0
         max-wait: -1ms
   datasource:

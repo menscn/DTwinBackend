@@ -8,7 +8,7 @@ package com.msc.DTwinBackend.constant;
  */
 public class AssemblyUnitConstant {
     public static final String[] CONSTANT = {"BIG_ROBOT_JOINT", "BIG_ROBOT_POS", "SMALL_ROBOT_JOINT",
-            "SMALL_ROBOT_POS", "PROGRAM_PROGRESS", "CAMERA", "TIGHTEN_FORCE", "FIXTURE_STATUS", "FIXTURE"};
+            "SMALL_ROBOT_POS", "PROGRAM_PROGRESS", "CAMERA", "TIGHTEN_FORCE", "FIXTURE_STATUS", "FIXTURE_TYPE"};
     public static final String[] ALL = {"A1", "A2", "A3", "A4", "A5", "A6",
             "AA", "AB", "AC", "AX", "AY", "AZ",
             "B1", "B2", "B3", "B4", "B5", "B6",
@@ -26,5 +26,5 @@ public class AssemblyUnitConstant {
     public static final String[] CAMERA = {"CamA", "CamX", "CamY"};
     public static final String[] TIGHTEN_FORCE = {"tForce"};
     public static final String[] FIXTURE_STATUS = {"FixOpen", "FixClose"};
-    public static final String[] FIXTURE = {"Fix1", "Fix2", "Fix3", "Fix4", "Fix5", "Fix6"};
+    public static final String[] FIXTURE_TYPE = {"Fix1", "Fix2", "Fix3", "Fix4", "Fix5", "Fix6"};
 }
