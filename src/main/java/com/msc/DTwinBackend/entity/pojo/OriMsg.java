@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -17,7 +18,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @TableName("orimsg")
-public class OriMsg {
+public class OriMsg implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)//在自增主键的变量加上即可
     private int id;
 

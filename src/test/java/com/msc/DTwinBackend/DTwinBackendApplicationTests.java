@@ -1,9 +1,8 @@
 package com.msc.DTwinBackend;
 
 import com.msc.DTwinBackend.constant.IdConstant;
-import com.msc.DTwinBackend.entity.pojo.FixtureForce;
+import com.msc.DTwinBackend.entity.pojo.AssemblyProcessDatabase;
 import com.msc.DTwinBackend.entity.pojo.OriMsg;
-import com.msc.DTwinBackend.entity.pojo.TorqueForce;
 import com.msc.DTwinBackend.mapper.*;
 import com.msc.DTwinBackend.rabbitmq.SendMsg;
 import org.junit.jupiter.api.Test;
@@ -26,6 +25,8 @@ class DTwinBackendApplicationTests {
     private FixtureForceMapper fixtureForceMapper;
     @Autowired
     private TorqueForceMapper torqueForceMapper;
+    @Autowired
+    private AssemblyProcessDatabaseMapper databaseMapper;
 
     @Test
     public void sendMsgContent() throws Exception {
@@ -53,21 +54,8 @@ class DTwinBackendApplicationTests {
 
     @Test
     public void testMysql() {
-//        SmallRobotJointData jointData = new SmallRobotJointData();
-//        jointData.setSJoint1("1");
-//        jointData.setSJoint2("1");
-//        jointData.setSJoint3("1");
-//        jointData.setSJoint4("1");
-//        jointData.setSJoint5("1");
-//        jointData.setSJoint6("1");
-        FixtureForce fixtureForce = new FixtureForce();
-        TorqueForce torqueForce = new TorqueForce();
-
-        fixtureForce.setFixture1("1");
-        torqueForce.setAssemblyBatchId("idConstant.getAssemblyBatchId()");
-//        smallRobotMapper.insert(jointData);
-//        fixtureForceMapper.insert(fixtureForce);
-
-        torqueForceMapper.insert(torqueForce);
+        AssemblyProcessDatabase database = new AssemblyProcessDatabase();
+        database.setAssemblyBatchId("20201017");
+        databaseMapper.insert(database);
     }
 }

@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -20,7 +21,7 @@ import java.util.Date;
 @AllArgsConstructor
 @TableName("bigrobotjointdata")
 @Accessors(chain = true)
-public class BigRobotJointData {
+public class BigRobotJointData implements Serializable {
     /**
      * ID号
      */
