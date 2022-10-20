@@ -35,19 +35,10 @@ public class BootNettyUdpSimpleChannelInboundHandler extends SimpleChannelInboun
         try {
             String xmlStr = msg.content().toString(CharsetUtil.UTF_8);
             //打印收到的消息
-            log.info("---------------------receive data--------------------------");
-            sendMsg.sendMsg(new Msg(xmlStr));
+//            log.info("---------------------receive data--------------------------");
+            sendMsg.sendMsg(new Msg("ok"));
             dataAnalysis.dataHandler(xmlStr, "Joint");
-
-//            String elementStr = "Joint";
-//            Document document = DocumentHelper.parseText(xmlStr);
-//            Element rootElement = document.getRootElement();
-//            Element element = rootElement.element(elementStr);
-//            List<Attribute> attributes = element.attributes();
-//            for (Attribute att : attributes) {
-//                jedis.set(att.getName(), att.getValue());
-//            }
-            log.info("---------------------ok--------------------------");
+//            log.info("---------------------ok--------------------------");
         } catch (Exception e) {
         }
     }

@@ -1,10 +1,13 @@
 package com.msc.DTwinBackend.rabbitmq;
 
 import com.msc.DTwinBackend.config.RabbitMsgConvertConfigure;
+import com.msc.DTwinBackend.constant.AssemblyUnitConstant;
 import com.msc.DTwinBackend.entity.pojo.Msg;
 import com.msc.DTwinBackend.entity.pojo.OriMsg;
 import com.msc.DTwinBackend.mapper.OriMsgMapper;
 import com.msc.DTwinBackend.service.BigRobotJointService;
+import com.msc.DTwinBackend.service.DataStorageService;
+import com.msc.DTwinBackend.utils.CommonMethod;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -23,9 +26,7 @@ import org.springframework.stereotype.Component;
 @RabbitListener(queues = RabbitMsgConvertConfigure.SPRING_BOOT_QUEUE)
 public class ReceiveMsg {
     @Autowired
-    private OriMsgMapper oriMsgMapper;
-    @Autowired
-    private BigRobotJointService bigRobotJointService;
+    private DataStorageService dataStorageService;
 
     @RabbitHandler
     public void receiveOriMsg(OriMsg oriMsg) {
@@ -36,26 +37,10 @@ public class ReceiveMsg {
 
     @RabbitHandler
     public void receiveMsg(Msg msg) {
-        // ...
-        log.info("---------------------消息队列接收到数据--------------------------");
-        System.out.println("[ReceiveMsgConvertMsg-MsgContent2] receive receiveMsgContent2 msg: " + msg);
-        OriMsg oriMsg = new OriMsg();
-        oriMsg.setXmlStr(msg.getXmlStr());
-        oriMsgMapper.insert(oriMsg);
-        System.out.println("[ReceiveMsgConvertMsg-MsgContent2] receive receiveMsgContent2 msg: " + oriMsg);
-        log.info("+++++数据存储成功-");
-//        BigRobotJointData objFromRedis = bigRobotJointService.getObjFromRedis();
-//        log.info("objFromRedis" + objFromRedis.getBJoint1());
+//        log.info("---------------------消息队列接收到数据--------------------------");
+
+        dataStorageService.allDataStorage();
+
+//        log.info("+++++数据存储成功-");
     }
-//    @RabbitHandler
-//    public void receiveString(@Payload String content) {
-//        // ...
-//        System.out.println("[ReceiveMsgConvertMsg-MsgContent2] receive msg: " + content);
-//    }
-//
-//    @RabbitHandler
-//    public void receiveStringb(byte[] content) {
-//        // ...
-//        System.out.println("[ReceiveMsgConvertMsg-MsgContent2] receive msg: " + content);
-//    }
 }

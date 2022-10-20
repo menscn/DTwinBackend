@@ -18,7 +18,7 @@ import java.util.List;
 @Slf4j
 public class DataAnalysis {
     private RedisUtils redisUtils;
-
+    private JedisPool pool = redisUtils.getPool();
     public DataAnalysis() {
         redisUtils = ApplicationContextProvider.getBean(RedisUtils.class);
     }
@@ -28,12 +28,14 @@ public class DataAnalysis {
         Element rootElement = document.getRootElement();
         Element element = rootElement.element(elementStr);
         List<Attribute> attributes = element.attributes();
-        try (JedisPool pool = redisUtils.getPool()) {
-            log.info("---------------------redis接收数据--------------------------");
-            Jedis jedis = pool.getResource();
+//        log.info(xmlStr);
+        Jedis jedis = pool.getResource();
+        try  {
             for (Attribute att : attributes) {
                 jedis.set(att.getName(), att.getValue());
             }
+            }finally {
+            jedis.close();
         }
     }
 }

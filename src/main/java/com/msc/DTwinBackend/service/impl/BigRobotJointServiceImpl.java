@@ -22,8 +22,6 @@ import java.util.List;
 @Service
 @Slf4j
 public class BigRobotJointServiceImpl implements BigRobotJointService {
-    @Autowired
-    private RedisUtils redisUtils;
 
     @Autowired
     private BigRobotMapper bigRobotMapper;
@@ -36,14 +34,7 @@ public class BigRobotJointServiceImpl implements BigRobotJointService {
 
     @Override
     public void insertData(BigRobotJointData robotJointData) {
-        BigRobotJointData jointData = new BigRobotJointData();
-        try (JedisPool pool = redisUtils.getPool()) {
-            Jedis jedis = pool.getResource();
-            jointData.setBJoint1(jedis.get("A1")).setBJoint2(jedis.get("A2")).setBJoint3(jedis.get("A3")).
-                    setBJoint4(jedis.get("A4")).setBJoint5(jedis.get("A5")).setBJoint6(jedis.get("A6"));
-            jointData.setAssemblyBatchId(IdConstant.getMysqlId().get("id"));
-        }
-        bigRobotMapper.insert(jointData);
+        bigRobotMapper.insert(robotJointData);
     }
 
     @Override
