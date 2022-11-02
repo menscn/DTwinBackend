@@ -1,13 +1,9 @@
 package com.msc.DTwinBackend.rabbitmq;
 
 import com.msc.DTwinBackend.config.RabbitMsgConvertConfigure;
-import com.msc.DTwinBackend.constant.AssemblyUnitConstant;
 import com.msc.DTwinBackend.entity.pojo.Msg;
 import com.msc.DTwinBackend.entity.pojo.OriMsg;
-import com.msc.DTwinBackend.mapper.OriMsgMapper;
-import com.msc.DTwinBackend.service.BigRobotJointService;
 import com.msc.DTwinBackend.service.DataStorageService;
-import com.msc.DTwinBackend.utils.CommonMethod;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
